@@ -21,7 +21,7 @@ This project provides a command-line utility and a web interface for generating 
 
 ### Installation
 
-1. Clone the repository And Installation:
+1. Clone the repository :
 
    ```bash
    git clone https://github.com/SaberZermani/sales_payment_utility-V1.git
@@ -29,18 +29,26 @@ This project provides a command-line utility and a web interface for generating 
     cd sales_payment_utility-V1/server-side
     composer install
 
-  Navigate to the client-side folder and install frontend dependencies using npm or Yarn:
-  cd ../client-side/vue_js_app
+2. Installation:
+
+  Navigate to the client-side folder and install frontend dependencies using npm    or     Yarn:
+
+    cd ../client-side/vue_js_app
     npm install
     # or
     yarn install
-2. Start the Symfony development server :
+
+    Start the Symfony development server :
+
     (under server-side folder)
-    symfony serve  
+        symfony serve  
     
 3. Start The Vue Js development server :
+
 (under client-side/vue_js_app folder)
+
     npm run serve or yarn serve
+    
     App running at:
   - Local:   http://localhost:8080/
 
