@@ -1,0 +1,10 @@
+# Except update just for assesment
+nelmio_cors:
+    defaults:
+        allow_credentials: true
+        allow_origin: ['*']
+        allow_methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
+        allow_headers: ['Content-Type', 'Authorization']
+        max_age: 3600
+    paths:
+        '^/api/': ~

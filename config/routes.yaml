@@ -1,5 +1,12 @@
+# config/routes.yaml
+
 controllers:
     resource:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+api_generate_sales_payments:
+    path: /api/generate-sales-payments
+    controller: App\Controller\SalesPaymentController::generateSalesPayments
+    methods: [POST]

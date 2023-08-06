@@ -10,6 +10,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
+use Symfony\Component\Process\Process;
 
 class SalesPaymentCommand extends Command
 {
@@ -30,13 +31,14 @@ class SalesPaymentCommand extends Command
         $outputFileName = $input->getArgument('output');
 
         if (!file_exists($outputFileName)) {
-            $helper = new QuestionHelper();
-            $question = new ConfirmationQuestion("The output file '$outputFileName' does not exist. Do you want to generate it? (y/n) ", false);
+           // $helper = new QuestionHelper();
+            //$question = new ConfirmationQuestion("The output file '$outputFileName' does not exist. Do you want to generate it? (y/n) ", false);
 
-            if (!$helper->ask($input, $output, $question)) {
-                $io->error('Operation aborted. Output file not generated.');
-                return Command::FAILURE;
-            }
+            //if (!$helper->ask($input, $output, $question)) {
+               
+                $io->error('Operation aborted. Payment file not exist.');
+                exit;
+           // }
         }
 
         $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -99,7 +101,11 @@ class SalesPaymentCommand extends Command
         fclose($file);
 
         $io->success("Sales payment dates for the missing months have been generated and saved to $outputFileName.");
-
+        $io->section('Missing Months:');
+        $io->table(['Month'], array_map(fn ($month) => [$month], $missingMonths));
+        $io->section('File Content:');
+            $io->table(array_keys(reset($fileData)), $fileData);
+    
         return Command::SUCCESS;
     }
 }
