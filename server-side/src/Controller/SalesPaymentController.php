@@ -12,12 +12,13 @@ class SalesPaymentController extends AbstractController
     public function generateSalesPayments(Request $request): JsonResponse
     {
         // Get input parameters from the request
-        
-        $outputFile = $request->request->get('outputFile');
-
+                
+        $data = json_decode($request->getContent(), true);
+        $outputFile = $data['outputFile'];
         $consolePath = __DIR__ . '/../../bin/console';
-        $filePath = __DIR__ . '/../../outputfile/paymentFiles.csv';
-        $process = new Process(['php', $consolePath, 'app:generate-sales-payments',  $filePath]);
+        $filePath = __DIR__ . '/../../../' . $outputFile; 
+        $process = new Process(['php', $consolePath, 'app:generate-sales-payments', $filePath]);
+
         try {
             $process->mustRun();
             $generatedData = $process->getOutput();
